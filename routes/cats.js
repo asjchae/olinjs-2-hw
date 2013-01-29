@@ -34,6 +34,7 @@ exports.newcat = function(req, res){
 		if (err) {
 			console.log("Problem saving kitteh", err);
 		} else {
+			console.log(kitteh.name, kitteh.age, kitteh.color);
 			res.send("Your new cat is named " + kitteh.name + ". Your cat is " + kitteh.color[0] + " and " + kitteh.color[1] + " and it is " + kitteh.age + " years old.");
 		}
 	});
@@ -47,6 +48,6 @@ exports.list = function(req, res) {
 		if (err) {
 			return console.log("error", err);
 		}
-		res.render('Cats', {cats: response, title: 'ALL the kittens.'});
+		res.render('cats', {cats: response, title: 'ALL the kittens.'});
   })  
 };

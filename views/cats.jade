@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 = title
+  p #{title}
+
+  div
+    each cat, i in cats
+      div(value=cat)
+        Name: #{cat.name}, age: #{cat.age}, color: #{cat.color}

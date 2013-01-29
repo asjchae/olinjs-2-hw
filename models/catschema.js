@@ -3,9 +3,10 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI || 'localhost');
 
 var catSchema = mongoose.Schema({
+  name: String,
   age: Number,
-  color: [String],
-  name: String
+  color: [String]
+
 });
 
 var Cat = mongoose.model('Cat', catSchema);
