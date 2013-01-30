@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGOLAB_URI || 'localhost');
+//mongoose.connect(process.env.MONGOLAB_URI || 'localhost');
 
 var catSchema = mongoose.Schema({
   name: String,

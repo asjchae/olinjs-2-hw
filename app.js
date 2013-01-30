@@ -13,6 +13,8 @@ var express = require('express')
 
 var app = express();
 
+mongoose.connect(process.env.MONGOLAB_URI || 'localhost');
+
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
