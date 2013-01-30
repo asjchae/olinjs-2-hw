@@ -35,6 +35,8 @@ app.get('/users', user.list);
 
 app.get('/cats/new', cats.newcat);
 app.get('/cats', cats.list);
+app.get('/cats/color/:color', cats.colorSort);
+app.get('/cats/delete/old', cats.deleteOld);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -12,7 +12,7 @@ function randomize(arraylist) {
 }
 
 var catnames = ["Marley", "Killer", "Captain Sushi", "Buttercupp", "Audrey", "Doughnut", "Kifi", "Zeke", "Mitsey"];
-var catcolors = ["Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Black", "Brown", "Gold", "White", "Pink", "Translucent"];
+var catcolors = ["red", "orange", "yellow", "green", "blue", "violet", "black", "brown", "gold", "white", "pink", "translucent"];
 
 var catage = Math.floor((Math.random()*20)+1);
 
@@ -41,13 +41,32 @@ exports.newcat = function(req, res){
 };
 
 
-// WHY DOESN'T THIS WORK.
 
 exports.list = function(req, res) {
-	Cat.find().sort('age').exec(function (err, response) {
+	var cats = Cat.find({}).sort('age').exec(function (err, response) {
 		if (err) {
 			return console.log("error", err);
 		}
 		res.render('cats', {cats: response, title: 'ALL the kittens.'});
   })  
+};
+
+
+exports.colorSort = function(req, res) {
+	var colorful = req.params.color;
+	var cats = Cat.find({'color': colorful}).sort('age').exec(function (err, response) {
+		if (err) {
+			return console.log("error", err);
+		}
+	res.render('cats', {cats: response, title: 'Cats that have the color ' + req.params.color});
+	})
+};
+
+exports.deleteOld = function(req, res) {
+	var cats = Cat.findOneAndRemove({}).sort('-age').exec(function (err, response) {
+		if (err) {
+			return console.log("error", err);
+		}
+	res.redirect('/cats');
+	})
 };
